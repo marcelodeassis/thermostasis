@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-public class SpotifyRecommendationArtist {
+public class PlaylistRecommendationArtist {
     @JsonProperty("name")
     private String name;
 

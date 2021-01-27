@@ -1,15 +1,15 @@
-package com.marcelodeassis.thermostasis.model;
+package com.marcelodeassis.thermostasis.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Track {
     private String trackName;
-    private String url;
+    private String artistName;
+    private String albumName;
+    private String imageUrl;
 }

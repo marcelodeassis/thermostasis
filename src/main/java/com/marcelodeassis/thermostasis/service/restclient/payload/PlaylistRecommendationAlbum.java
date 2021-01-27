@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Getter
 @ToString
-public class SpotifyRecommendationAlbum {
+public class PlaylistRecommendationAlbum {
     @JsonProperty("name")
     private String name;
 

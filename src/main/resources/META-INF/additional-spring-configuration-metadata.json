@@ -1,1 +1,8 @@
-{ "properties": [ ] }
+{
+  "properties": [
+    {
+      "name": "api.openweathermap.key",
+      "type": "java.lang.String",
+      "description": "Description for api.openweathermap.key."
+  }
+] }

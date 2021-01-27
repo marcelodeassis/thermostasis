@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 @Getter
 @ToString
-public class SpotifyRecommendationTrack {
+public class PlaylistRecommendationTrack {
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("album")
-    private SpotifyRecommendationAlbum album;
+    private PlaylistRecommendationAlbum album;
 
     @JsonProperty("artists")
-    List<SpotifyRecommendationArtist> artists;
+    List<PlaylistRecommendationArtist> artists;
 
     public String getArtistsString(){
         return artists.stream().map(Object::toString).collect(Collectors.joining(", "));

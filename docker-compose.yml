@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    container_name: postgres
+    volumes:
+      - postgresData:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432/tcp
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=thermostasis
+    restart: always
+  flyway:
+    container_name: flyway
+    image: flyway/flyway:7-alpine
+    command: -locations=filesystem:/flyway/sql -connectRetries=30 migrate
+    volumes:
+      - $PWD/flyway/migration:/flyway/sql
+    environment:
+      - FLYWAY_URL=jdbc:postgresql://postgres:5432/thermostasis
+      - FLYWAY_USER=postgres
+      - FLYWAY_PASSWORD=admin
+      - FLYWAY_SCHEMAS=flyway,public
+      - FLYWAY_GROUP=true
+    depends_on:
+      - postgres
+    links:
+      - postgres
+  thermostasis-api:
+    image: thermostasis-api:latest
+    container_name: thermostasis-api
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/thermostasis
+
+volumes:
+  postgresData:

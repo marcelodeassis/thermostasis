@@ -8,8 +8,8 @@ import java.util.List;
 
 @Getter
 @ToString
-public class SpotifyRecommendation {
+public class PlaylistRecommendation {
     @JsonProperty("tracks")
-    private List<SpotifyRecommendationTrack> tracks;
+    private List<PlaylistRecommendationTrack> tracks;
 }
 

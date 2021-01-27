@@ -1,8 +1,7 @@
-package com.marcelodeassis.thermostasis.model;
+package com.marcelodeassis.thermostasis.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
