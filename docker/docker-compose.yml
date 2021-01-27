@@ -20,12 +20,12 @@ services:
     image: flyway/flyway:7-alpine
     command: -locations=filesystem:/flyway/sql -connectRetries=30 migrate
     volumes:
-      - $PWD/flyway/migration:/flyway/sql
+      - ./db/migration:/flyway/sql
     environment:
       - FLYWAY_URL=jdbc:postgresql://postgres:5432/thermostasis
       - FLYWAY_USER=postgres
       - FLYWAY_PASSWORD=admin
-      - FLYWAY_SCHEMAS=flyway,public
+      - FLYWAY_SCHEMAS=public
       - FLYWAY_GROUP=true
     depends_on:
       - postgres
