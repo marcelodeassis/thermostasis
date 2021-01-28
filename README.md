@@ -1,4 +1,4 @@
-# Thermostasis API - Desafio Técnico
+# Thermostasis API
 
 ### Instruções
 
