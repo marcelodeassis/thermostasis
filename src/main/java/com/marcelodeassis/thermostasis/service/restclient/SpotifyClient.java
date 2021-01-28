@@ -73,7 +73,8 @@ public class SpotifyClient implements PlaylistRecommendationClient {
 
         log.info(o.getBody().toString());
 
-        nextTokenRequestTime = LocalDateTime.now().plusSeconds(o.getBody().getExpiresIn());
+        //request next token only 30 seconds before expiration time
+        nextTokenRequestTime = LocalDateTime.now().plusSeconds(o.getBody().getExpiresIn() - 30);
 
         return o.getBody();
     }

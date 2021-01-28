@@ -3,10 +3,6 @@ package com.marcelodeassis.thermostasis.service.restclient.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.util.NumberUtils;
-
-import java.math.BigDecimal;
-import java.util.Map;
 
 @Getter
 @ToString

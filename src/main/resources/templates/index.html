@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thermostasis API</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <style>
+        #mapid { height: 200px; width: 800px; }
+        #playlist{
+            font-family: "Adobe Arabic";
+            border: 1px solid azure;
+            height: 800px;
+            width: 800px;
+            overflow-scrolling: auto;
+        }
+
+        #playlist .item{
+            height: 100px;
+            border-bottom: 5px solid aliceblue;
+            padding: 5px;
+        }
+
+        #playlist .img{
+            width: 12%;
+            float: left;
+        }
+
+        #playlist .label {
+            width: 86%;
+            float: left;
+            padding-left: 15px;
+        }
+
+        #playlist .label .song {
+            font-weight: bold;
+            font-size: 20px;
+            padding-top:10px;
+        }
+
+        #playlist .img img{
+            height: 100px;
+            width: 100px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+<div id="playlist">
+    <div class="item">
+        <div class="img"></div>
+        <div class="label">
+            <div class="song">TPAC SOng</div>
+            <div class="album">TPAC SOng</div>
+        </div>
+    </div>
+</div>
+<script>
+    var map = L.map('mapid').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFyY2Vsb2RlYXNzaXMiLCJhIjoiY2trZzJzcjAyMDc3NDJ3bnNtN2JncmxlMCJ9.-PWt_oBZaXMOkpiQWt5zVA', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(map);
+
+    map.on('click', function(e) {
+        //console.log("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
+        L.marker([e.latlng.lat, e.latlng.lng], {'title':"lol"}).addTo(map);
+        loadPlaylistData(e.latlng.lat, e.latlng.lng);
+    });
+
+
+    async function loadPlaylistData(lat, lng) {
+
+        const pane = document.getElementById("playlist");
+        pane.innerHTML = "Loading...";
+
+        const response = await fetch("http://localhost:8080/api/coordinates/"+lat+"/"+lng);
+        const data = await response.json();
+        console.log(data);
+        pane.innerHTML = "";
+        data.forEach(obj => {
+            pane.innerHTML += "<div class=\"item\">\n" +
+                "        <div class=\"img\"><img src='"+obj.imageUrl+"'></div>\n" +
+                "        <div class=\"label\">\n" +
+                "            <div class=\"song\">"+obj.trackName+"</div>\n" +
+                "            <div class=\"album\">"+obj.artistName+" - "+obj.albumName+"</div> \n" +
+                "        </div>\n" +
+                "    </div>";
+        });
+    }
+</script>
+</body>
+</html>
