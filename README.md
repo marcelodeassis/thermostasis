@@ -1,6 +1,6 @@
 # Thermostasis API - Desafio Técnico
 
-###Instruções
+### Instruções
 
 Entre no seu workspace e ...
 1. git clone https://github.com/marcelodeassis/thermostasis.git
@@ -12,7 +12,7 @@ Entre no seu workspace e ...
     > Se tudo der certo, o docker compose vai iniciar a imagem do Themostasis, recém criada; instalar a imagem do Postgres e do Flyway, já criando o banco e a tabela necessária para os logs de acesso.
 
 ---
-###Resultados
+### Resultados
 1. http://localhost:8080/api/swagger-ui/index.html
     > Página da documentação (Swagger) da API
 2. http://localhost:8080/api/index
@@ -22,9 +22,9 @@ Entre no seu workspace e ...
 
 
 
-######*Termostase* é o termo usado para definir nosso ajuste natural de temperatura corporal 
+###### *Termostase* é o termo usado para definir nosso ajuste natural de temperatura corporal 
 
-######<sub><sup>(Mas foi uma coincidência, pois para batizar o projeto estava pensando em "thermo" + êxtase, que eu em inglês não tem esse sentido)</sup></sub>
+###### <sub><sup>(Mas foi uma coincidência, pois para batizar o projeto estava pensando em "thermo" + êxtase, que eu em inglês não tem esse sentido)</sup></sub>
 
 
 
