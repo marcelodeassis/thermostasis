@@ -5,6 +5,7 @@
 Entre no seu workspace e ...
 1. git clone https://github.com/marcelodeassis/thermostasis.git
 1. cd thermostasis
+1. abrir src/main/resources/application.properties e inserir Key da API do OpenWeatherMap e ClientID e Secret da API do Spotify
 1. mvn package -DskipTests
 1. docker build -t thermostasis-api -f docker/Dockerfile .
      >Da raiz do projeto, "buildamos" a imagem definida no Dockerfile, que usa o Jar do projeto. Primeiro argumento é o nome da imagem, e o segundo é o path do Dockerfile, e o ponto no final pra indicar que ele será usado no diretório corrente
